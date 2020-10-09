@@ -2,7 +2,7 @@
 
 #### 介绍
 Allow users to use Python objects in Octave in order to take advantage of the rich resources of Python.
-
+原版源代码可以从地址 https://hg.savannah.gnu.org/hgweb/octave/archive/tip.zip下载
 #### 软件架构
 软件架构说明
 
