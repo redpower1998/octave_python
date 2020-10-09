@@ -1,0 +1,194 @@
+Summary of important user-visible changes for version 7 (yyyy-mm-dd):
+----------------------------------------------------------------------
+
+### General improvements
+
+- Many functions in Octave can be called in a command form---no
+parentheses for invocation and no return argument assignment---or in a
+functional form---parentheses and '=' for assignment of return values.
+
+    Command Form Example
+
+    `mkdir new_directory`
+
+    Function Form Example
+
+    `status = mkdir ("new_directory")`
+
+    Octave now handles errors that occur in a consistent manner.  If
+    called in command form and there is a failure, an error is thrown
+    and a message printed.  If called in functional form, no error or
+    message is printed and the failure is communicated to the programmer
+    via the output status variable.
+
+    The following list of functions have been modified.
+
+    * `copyfile`
+    * `fcntl`
+    * `fileattrib`
+    * `kill`
+    * `link`
+    * `mkfifo`
+    * `movefile`
+    * `rename`
+    * `rmdir`
+    * `symlink`
+    * `unlink`
+
+### Graphics backend
+
+- Support for Qt4 for graphics and the GUI has been removed.
+
+### Matlab compatibility
+
+- Calling a user-defined function with too many inputs or outputs is now
+an error.  The interpreter makes this check automatically.  If a
+function uses varargin then the check is skipped for function inputs,
+and if a function uses varargout then the check is skipped for function
+outputs.
+
+- As part of GSoC 2020, Abdallah K. Elshamy implemented the 
+`jsondecode` and `jsonencode` functions to read and write JSON data.
+
+- The function `griddata` now implements the "v4" Biharmonic Spline
+Interpolation method.  In adddition, the function now accepts 3-D inputs
+by passing the data to `griddata3`.
+
+- Coordinate transformation functions `cart2sph`, `sph2cart`,
+`cart2pol`, and `pol2cart` now accept either row or column vectors for
+coordinate inputs.  A single coordinate matrix with one variable per
+column can still be used as function input, but a single output variable
+will now contain just the first output coordinate, and will no longer
+return the full output coordinate matrix.  Output size matches the size
+of input vectors, or in the case of an input matrix will be column
+vectors with rows corresponding to the input coordinate matrix.
+
+- The function `dec2bin` and `dec2hex` now support negative numbers.
+
+- Binary and hexadecimal constants like `0b101` and `0xDEADBEEF` now
+create integers (unsigned by default) with sizes determined from the
+number of digits present.  For example, `0xff` creates a `uint8` value
+and `0xDEADBEEF` creates a `uint64` value.  You may also use a suffix of
+the form `s8`, `s16`, `s32`, `s64`, `u8`, `u16`, `u32`, or `u64` to
+explicitly specify the data type to use (`u` or `s` to indicate signed
+or unsigned and the number to indicate the integer size).
+
+Binary constants are limited to 64 binary digits and hexadecimal
+constants are limited to 16 hexadecimal digits with no automatic
+rounding or conversion to floating point values.  Note that this may
+cause problems in existing code.  For example, an expression like
+`[0x1; 0x100; 0x10000]` will be uint8 (because of the rules of
+concatenating integers of different sizes) with the larger values
+truncated (because of the saturation semantics of integer values).  To
+avoid these kinds of problems either: 1) declare the first integer to be
+of the desired size such as `[0x1u32; 0x100; 0x10000]`, or 2) pad
+constants in array expressions with leading zeros so that they use the
+same number of digits for each value such as
+`[0x00_00_01; 0x00_01_00; 0x01_00_00]`.
+
+- The function `importdata` now produces more compatible results when
+the file contains a 2-D text matrix.
+
+- `uicontrol` objects now fully implement the "Off" and "Inactive"
+values of the "Enable" property.  When the value is "Off", no
+interaction with the object occurs and the `uicontrol` changes color
+(typically to gray) to indicate it is disabled.  When the value is
+"Inactive", the object appears normally (no change in color), but it is
+not possible to change the value of the object (such as modifying text
+in an `Edit` box or clicking on a `RadioButton`).
+
+- The functions `scatter` and `scatter3` now return a handle to a
+scatter graphics object.  For compatibility, they return an `hggroup` of
+patch graphics objects when the "gnuplot" graphics toolkit is used.  In
+previous versions of Octave, these functions returned a hg group of
+patch graphics objects for all graphics toolkits.
+
+- The function `saveas` now defaults to saving in Octave figure format
+(.ofig) rather than PDF (.pdf).
+
+- The additional property "contextmenu" has been added to all graphics
+objects.  It is equivalent to the previously used "uicontextmenu"
+property which is hidden now.
+
+- A new warning ID (Octave:unimplemented-matlab-functionality) has been
+added which prints a warning when Octave's parser recognizes valid
+Matlab code, but for which Octave does not yet implement the
+functionality.  By default, this warning is enabled.
+
+- Additional properties have been added to the `axes` graphics object:
+    * "alphamap" (not yet implemented)
+    * "alphascale" (not yet implemented)
+    * "colorscale" (not yet implemented)
+    * "fontsizemode" (not yet implemented)
+    * "innerposition" (equivalent to "position")
+    * "interactions" (not yet implemented)
+    * "layout" (not yet implemented)
+    * "legend" (not yet implemented)
+    * "nextseriesindex" (read-only, used by `scatter` graphics objects)
+    * "positionconstraint" (replacement for "activepositionproperty"
+      which is now a hidden property.  No plans for removal.)
+    * "toolbar" (not yet implemented)
+    * "xaxis" (not yet implemented)
+    * "yaxis" (not yet implemented)
+    * "zaxis" (not yet implemented)
+
+### Alphabetical list of new functions added in Octave 7
+
+* `getpixelposition`
+* `endsWith`
+* `jsondecode`
+* `jsonencode`
+* `listfonts`
+* `memory`
+* `rng`
+* `startsWith`
+* `streamribbon`
+
+### Deprecated functions and properties
+
+The following functions and properties have been deprecated in Octave 7
+and will be removed from Octave 9 (or whatever version is the second
+major release after 7):
+
+- Functions
+
+  Function               | Replacement
+  -----------------------|------------------
+                         |
+
+- Properties
+
+  Object           | Property      | Value
+  -----------------|---------------|------------
+                   |               |
+
+### Removed functions and properties
+
+The following functions and properties were deprecated in Octave 5
+and have been removed from Octave 7.
+
+- Functions
+
+  Function                 | Replacement
+  -------------------------|------------------
+  `output_max_field_width` | `output_precision`
+  `is_keyword`             | `iskeyword`
+
+- Properties
+
+  Object           | Property      | Value
+  -----------------|---------------|------------
+  `text`           | `fontangle`   | `"oblique"`
+  `uibuttongroup`  | `fontangle`   | `"oblique"`
+  `uicontrol`      | `fontangle`   | `"oblique"`
+  `uipanel`        | `fontangle`   | `"oblique"`
+  `uitable`        | `fontangle`   | `"oblique"`
+
+### Old release news
+
+- [Octave 6.x](etc/NEWS.6)
+- [Octave 5.x](etc/NEWS.5)
+- [Octave 4.x](etc/NEWS.4)
+- [Octave 3.x](etc/NEWS.3)
+- [Octave 2.x](etc/NEWS.2)
+- [Octave 1.x](etc/NEWS.1)
