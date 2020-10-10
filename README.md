@@ -7,12 +7,12 @@ Octave原有Python函数，但是这个方式限制颇多。作为对比Octave�
 
 例如可以实现如下计算：
 
-> matplot=pythonImport("matplotlib.pyplot")
-> x1=0:0.1:10
-> x2=sin(x1)
-> matplot.plot(x1,x2);
-> matplot.show()
-
+> matplot=pythonImport("matplotlib.pyplot")  
+> x1=0:0.1:10  
+> x2=sin(x1)  
+> matplot.plot(x1,x2)  
+> matplot.show()  
+  
 其中pythonImport 类似于Python的import.
 在此之后，就可以用Octave语法去调用Python的资源了， 在上例中，导入了 Python的 matplotlib 库，使用Octave构建了数据，用matplotlib显示图表
 
