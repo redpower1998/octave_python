@@ -206,7 +206,7 @@ namespace octave
                 frame.run ();
 
                 if (tmp.is_defined ()
-                    && (tmp.isstruct () || tmp.isjava () || tmp.is_classdef_object ()))
+                    && (tmp.isstruct () || tmp.isjava ()  || tmp.ispython () || tmp.is_classdef_object ()))
                   names = tmp.map_keys ();
               }
             catch (const execution_exception&)

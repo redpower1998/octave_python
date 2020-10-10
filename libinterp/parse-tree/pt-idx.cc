@@ -576,6 +576,7 @@ namespace octave
 
     bool indexing_object = (base_expr_val.isobject ()
                             || base_expr_val.isjava ()
+                            || base_expr_val.ispython()
                             || (base_expr_val.is_classdef_meta ()
                                 && ! base_expr_val.is_package ()));
 
@@ -593,7 +594,6 @@ namespace octave
               {
                 // Evaluate what we have so far to find the value to
                 // pass to the END function.
-
                 try
                   {
                     // Silently ignore extra output values.
@@ -619,6 +619,7 @@ namespace octave
 
                         if (partial_expr_val.isobject ()
                             || partial_expr_val.isjava ()
+                            || partial_expr_val.ispython ()
                             || (partial_expr_val.is_classdef_meta ()
                                 && ! partial_expr_val.is_package ()))
                           {

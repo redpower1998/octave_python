@@ -635,6 +635,9 @@ public:
   bool isjava (void) const
   { return rep->isjava (); }
 
+  bool ispython (void) const
+  { return rep->ispython (); }
+  
   bool is_cs_list (void) const
   { return rep->is_cs_list (); }
 

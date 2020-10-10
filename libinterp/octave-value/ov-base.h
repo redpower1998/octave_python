@@ -425,6 +425,8 @@ public:
 
   virtual bool isjava (void) const { return false; }
 
+  virtual bool ispython (void) const { return false; }
+
   virtual bool is_cs_list (void) const { return false; }
 
   virtual bool is_magic_colon (void) const { return false; }

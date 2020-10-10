@@ -51,6 +51,7 @@ OCTAVE_VALUE_INC = \
   %reldir%/ov-flt-re-diag.h \
   %reldir%/ov-flt-re-mat.h \
   %reldir%/ov-java.h \
+  %reldir%/ov-python.h \  
   %reldir%/ov-lazy-idx.h \
   %reldir%/ov-magic-int.h \
   %reldir%/ov-mex-fcn.h \
@@ -117,6 +118,7 @@ OCTAVE_VALUE_SRC = \
   %reldir%/ov-flt-re-diag.cc \
   %reldir%/ov-flt-re-mat.cc \
   %reldir%/ov-java.cc \
+  %reldir%/ov-python.cc \    
   %reldir%/ov-lazy-idx.cc \
   %reldir%/ov-magic-int.cc \
   %reldir%/ov-mex-fcn.cc \
@@ -159,6 +161,7 @@ noinst_LTLIBRARIES += %reldir%/liboctave-value.la
 %canon_reldir%_liboctave_value_la_CPPFLAGS = \
   $(libinterp_liboctinterp_la_CPPFLAGS) \
   $(HDF5_CPPFLAGS) \
-  $(JAVA_CPPFLAGS)
+  $(JAVA_CPPFLAGS) \
+  $(PYTHON_CPPFLAGS)
 
 %canon_reldir%_liboctave_value_la_LIBADD = $(JAVA_LIBS)

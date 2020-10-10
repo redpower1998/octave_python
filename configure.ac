@@ -239,6 +239,13 @@ OCTAVE_PROG_GNUPLOT
 OCTAVE_PROG_PAGER
 OCTAVE_PROG_PYTHON
 
+AC_DEFINE(HAVE_PYTHON, 1, [Define to 1 if use Python])
+
+## PYTHON_CPPFLAGS="-I /usr/include/python3.8/ -lpython3.8 "
+CPPFLAGS="$CPPFLAGS -I /usr/include/python3.8/ "
+LIBS="$LIBS -lpython3.8 " 
+## AC_SUBST(PYTHON_CPPFLAGS);
+
 ## Programs used to generate icons file formats.
 OCTAVE_PROG_ICOTOOL
 OCTAVE_PROG_RSVG_CONVERT
