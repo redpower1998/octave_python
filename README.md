@@ -14,8 +14,8 @@ For example:
 > matplot.show()  
 
 
->test1=pythonImport("pythondemo1")
->test1.add(1,2)
+> test1=pythonImport("pythondemo1")  
+> test1.add(1,2)  
 
 
 #### This project has not been completed, only the main functions have been implemented. So please do not use it in a production environment.
