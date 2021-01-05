@@ -13,6 +13,11 @@ For example:
 > matplot.plot(x1,x2)  
 > matplot.show()  
 
+
+>test1=pythonImport("pythondemo1")
+>test1.add(1,2)
+
+
 #### This project has not been completed, only the main functions have been implemented. So please do not use it in a production environment.
 
 If you encounter a problem, you can tell me, or you can try to fix it by yourself. welcome to modify and submit the code.
